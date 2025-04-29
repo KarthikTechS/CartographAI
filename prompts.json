@@ -1,0 +1,11 @@
+{
+  "dbml_explanation": {
+    "system_message": "You are a database documentation expert. Provide concise explanations of database tables and columns:\n1. TABLE: 1 sentence real-world purpose\n2. COLUMNS: Bullet points with:\n   - Business meaning\n   - Data type reason\n   - Key constraints (PK/FK)\nKeep each explanation in detail maximum upto 3 lines in a meaningful way.",
+    "user_template": "Explain this database table in real-world terms:\n{dbml_input}\n\nProvide only the explanations, no DBML code."
+  },
+  "sql_to_dbml": {
+    "system_message": "You are a helpful assistant that converts SQL DDL into DBML format.",
+    "user_template": "Convert the following SQL DDL into DBML format.\nUse the structure shown below as the expected format:\n\nProject BankingSystem {\n  database_type: \"PostgreSQL\"\n  note: \"Comprehensive sample DBML schema\"\n}\n\nTable table_name {{\n  column_name data_type [constraints]\n  // ... other columns\n\n  Indexes {{\n    (column_name) [options]\n  }}\n\n  Note: \"Table description\"\n}}\n\nSQL DDL to convert:\n{sql_input}",
+    "example_format": "Project BankingSystem {\n  database_type: \"PostgreSQL\"\n  note: \"Comprehensive sample DBML schema\"\n}\n\nEnum account_status {\n  Active\n  Inactive\n  Closed\n  Suspended\n}\n\nEnum transaction_type {\n  Deposit\n  Withdrawal\n  Transfer\n  Fee\n}\n\nTable customers {\n  customer_id uuid [pk, not null]\n  first_name varchar(50) [not null]\n  last_name varchar(50) [not null]\n  email varchar(100) [unique, not null]\n  phone_number varchar(20)\n  date_of_birth date\n  created_at timestamp\n  updated_at timestamp\n\n  Indexes {\n    (email) [unique, name: \"idx_customers_email\"]\n  }\n\n  Note: \"Stores customer details\"\n}"
+  }
+} 
